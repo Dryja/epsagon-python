@@ -8,6 +8,7 @@ import time
 import functools
 import warnings
 import collections
+import collections.abc
 
 import epsagon.trace
 import epsagon.runners.tencent_function
@@ -26,7 +27,7 @@ def _add_status_code(runner, return_value):
     :param runner: Runner event to update
     :param return_value: The return value to extract from
     """
-    if isinstance(return_value, collections.Mapping):
+    if isinstance(return_value, collections.abc.Mapping):
         status_code = return_value.get('statusCode')
         if status_code:
             runner.resource['metadata']['status_code'] = status_code

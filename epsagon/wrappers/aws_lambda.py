@@ -12,6 +12,7 @@ import copy
 import functools
 import warnings
 import collections
+import collections.abc
 from uuid import uuid4
 
 import epsagon.trace
@@ -32,7 +33,7 @@ def _add_status_code(runner, return_value):
     :param runner: Runner event to update
     :param return_value: The return value to extract from
     """
-    if isinstance(return_value, collections.Mapping):
+    if isinstance(return_value, collections.abc.Mapping):
         status_code = return_value.get('statusCode')
         if status_code:
             runner.resource['metadata']['status_code'] = status_code
@@ -103,7 +104,6 @@ def lambda_wrapper(func):
                 args,
                 kwargs
             )
-
         if constants.COLD_START:
             runner.resource['metadata'][
                 'aws.lambda.cold_start_duration'

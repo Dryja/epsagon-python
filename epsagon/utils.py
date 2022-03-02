@@ -5,6 +5,7 @@ Utilities for Epsagon module.
 from __future__ import absolute_import, print_function
 import os
 import collections
+import collections.abc
 import uuid
 import socket
 import sys
@@ -333,13 +334,13 @@ def find_in_object(obj, key, path=None):
     if not path:
         path = []
 
-    if isinstance(obj, collections.Mapping):
+    if isinstance(obj, collections.abc.Mapping):
         # search key in obj
         if key in obj:
             return obj[key], path
 
     if (
-        isinstance(obj, collections.Iterable)
+        isinstance(obj, collections.abc.Iterable)
         and not isinstance(obj, six.string_types)
     ):
         for k in obj:
