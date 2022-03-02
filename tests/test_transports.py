@@ -27,4 +27,4 @@ def test_httptransport_timeout():
 
     # Making sure that an unreachable url will result in duration almost equal to the
     # timeout duration set
-    assert http_transport.timeout < duration < http_transport.timeout + 0.3
+    assert http_transport.timeout < duration < http_transport.timeout + 0.8
